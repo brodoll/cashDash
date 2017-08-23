@@ -34,10 +34,9 @@ def cashDash_despesas():
     else:
         s = open_book(os.path.join("gtm-controle.gnucash"), open_if_lock=True)
 
-    today = datetime.datetime.today()
     transactions = [tr for tr in s.transactions  # query all transactions in the book/session and filter them on
-                    if (tr.post_date.date() >= datetime.date(2016,  1, 1)) & 
-                       (tr.post_date.date() < datetime.date(today.year, today.month, today.day))] 
+                    if (tr.post_date.date() >= datetime.date(2016,  10, 1)) & 
+                       (tr.post_date.date() < datetime.date(2017, 8, 4))] 
     rows_list=[]
     for tr in transactions:
         for spl in tr.splits:

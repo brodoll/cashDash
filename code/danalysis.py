@@ -14,7 +14,7 @@ else:
 
 transactions = [tr for tr in s.transactions  # query all transactions in the book/session and filter them on
                 if (tr.post_date.date() >= datetime.date(2016,  10, 1)) & 
-                   (tr.post_date.date() < datetime.date(2017, 7, 11))] 
+                   (tr.post_date.date() < datetime.date(2017, 8, 11))] 
 rows_list=[]
 for tr in transactions:
     for spl in tr.splits:
