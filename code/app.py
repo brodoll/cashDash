@@ -23,6 +23,9 @@ app.cache = Cache(app)
 def index():
     return render_template("index.html")
 
+@app.route("/table")
+def table():
+    return render_template("table.html")
 
 @app.route("/cashDash/despesas")
 #@nocache
