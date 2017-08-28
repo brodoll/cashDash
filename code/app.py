@@ -25,7 +25,46 @@ def index():
 
 @app.route("/table")
 def table():
-    return render_template("table.html")
+    if __name__=='__main__':
+        this_folder = '/home/guilherme/Dropbox/Docs/gnuCash/'
+        s = open_book(os.path.join(this_folder, "gtm-controle.gnucash"), open_if_lock=True)
+    else:
+        s = open_book(os.path.join("gtm-controle.gnucash"), open_if_lock=True)
+
+    today = datetime.datetime.today()
+    transactions = [tr for tr in s.transactions  # query all transactions in the book/session and filter them on
+                    if (tr.post_date.date() >= datetime.date(2016,  1, 1)) & 
+                       (tr.post_date.date() < datetime.date(today.year, today.month, today.day))] 
+    rows_list=[]
+    for tr in transactions:
+        for spl in tr.splits:
+            dict1={
+                'Date':pd.to_datetime(tr.post_date.date()),
+                'Value':spl.value,
+                'Type':spl.account.type,
+                'Parent':spl.account,
+                'Description':tr.description,
+            }
+            rows_list.append(dict1)
+      
+    df = pd.DataFrame(rows_list)
+    
+    # Ajustes no dataframe
+    df.Value = df.Value.astype(float)
+    df['Month']=pd.to_datetime(df.Date).dt.month
+    df['Year']=pd.to_datetime(df.Date).dt.year
+    df['Parent']=df.Parent.astype('string').str.replace('Account<|\[BRL\]>','')
+    df = df.drop(df[df.Parent.str.contains('Imbalance-BRL|Orphan-BRL|template')].index)
+    df['Sublevel'] = [el[1] for el in df.Parent.str.split(':')] #list comprehention
+
+    # Analise de Despesas
+    # Total de Despesas
+    totalByTypeMonth=df[['Date','Month','Value','Type']].groupby(['Type','Month']).sum()
+        
+    # Despesas Fixas e Variaveis
+    # pd.options.mode.chained_assignment = None > Disable SettingWithCopyWarning
+    despesas = df[df['Type']=='EXPENSE'].copy()
+    return render_template("table_jinja.html",expenses = despesas)
 
 @app.route("/cashDash/despesas")
 #@nocache

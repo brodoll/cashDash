@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="./static/lib/css//bootstrap.min.css">
+  <link rel="stylesheet" href="./static/lib/css/keen-dashboards.css">
+  <link rel="stylesheet" href="./static/lib/css/dc.css">
+  <link rel="stylesheet" href="./static/css/custom.css">
+
+
+</head>
+<body class="application">
+
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="./">cashDash</a>
+      </div>
+    </div>
+  </div>
+
+    <div class="row">
+      <!-- Tabela -->
+      <div class="container">
+		  <h2>Lista de Despesas</h2>
+		  <p>Aqui encontram-se todas as despesas desde 2016:</p>         
+		  {{ expenses.to_html(classes="table table-hover") | safe}}
+	  </div>
+    </div>
+
+    <hr>
+    <p class="small text-muted">Built with &#9829; by <a href="https://keen.io">Keen IO</a></p>
+
+  </div>
+
+  <!-- jquery 3.x+ deu conflito com getDefault(). Utilizei 2.2.4 https://code.jquery.com/jquery/ -->
+  <script src="./static/lib/js/jquery.min.js"></script>
+  <script src="./static/lib/js/bootstrap.min.js"></script>
+  <script src="./static/lib/js/crossfilter.js"></script>
+  <script src="./static/lib/js/d3.js"></script>
+  <script src="./static/lib/js/dc.js"></script>
+  <script src="./static/lib/js/color-mixin.js"></script>
+  <script src="./static/lib/js/queue.js"></script>
+  <script src="./static/lib/js/csi.min.js"></script>
+
+
+
+  <script src="./static/lib/js/keen.min.js"></script>
+  <script src='./static/js/graphs.js' type='application/javascript'></script>
+</body>
+
+</html>
