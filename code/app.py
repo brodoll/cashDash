@@ -64,7 +64,7 @@ def table():
     # Despesas Fixas e Variaveis
     # pd.options.mode.chained_assignment = None > Disable SettingWithCopyWarning
     despesas = df[df['Type']=='EXPENSE'].copy()
-    return render_template("table_jinja.html",expenses = despesas)
+    return render_template("nav.html",expenses = despesas)
 
 @app.route("/cashDash/despesas")
 #@nocache

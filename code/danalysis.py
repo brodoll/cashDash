@@ -13,8 +13,8 @@ else:
     s = open_book(os.path.join("gtm-controle.gnucash"), open_if_lock=True)
 
 transactions = [tr for tr in s.transactions  # query all transactions in the book/session and filter them on
-                if (tr.post_date.date() >= datetime.date(2016,  10, 1)) & 
-                   (tr.post_date.date() < datetime.date(2017, 8, 11))] 
+                if (tr.post_date.date() >= datetime.date(2017,  1, 1)) & 
+                   (tr.post_date.date() < datetime.date(2017, 8, 28))] 
 rows_list=[]
 for tr in transactions:
     for spl in tr.splits:
