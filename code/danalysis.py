@@ -13,8 +13,8 @@ else:
     s = open_book(os.path.join("gtm-controle.gnucash"), open_if_lock=True)
 
 transactions = [tr for tr in s.transactions  # query all transactions in the book/session and filter them on
-                if (tr.post_date.date() >= datetime.date(2017,  1, 1)) & 
-                   (tr.post_date.date() < datetime.date(2017, 8, 28))] 
+                if (tr.post_date.date() >= datetime.date(2017,  9, 1)) & 
+                   (tr.post_date.date() < datetime.date(2017, 9, 10))] 
 rows_list=[]
 for tr in transactions:
     for spl in tr.splits:
@@ -49,6 +49,10 @@ totalByTypeMonth=df[['Date','Month','Value','Type']].groupby(['Type','Month']).s
 despesas = df[df['Type']=='EXPENSE'].copy()
 # Despesas por subclassificacao
 despesas['Sublevel2']=[el[2] for el in despesas.Parent.str.split(':')] 
+         # Despesas por subclassificação
+despesas[['Month','Value','Sublevel2']].groupby(['Month','Sublevel2']).sum().\
+unstack().Value.plot(kind='bar')
+
 
 # Complementar de df despesas
 outros = df[df['Type']!='EXPENSE'].copy()

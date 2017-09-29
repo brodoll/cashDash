@@ -34,7 +34,7 @@ def table():
     today = datetime.datetime.today()
     transactions = [tr for tr in s.transactions  # query all transactions in the book/session and filter them on
                     if (tr.post_date.date() >= datetime.date(2016,  1, 1)) & 
-                       (tr.post_date.date() < datetime.date(today.year, today.month, today.day))] 
+                       (tr.post_date.date() <= datetime.date(today.year, today.month, today.day))] 
     rows_list=[]
     for tr in transactions:
         for spl in tr.splits:
@@ -79,7 +79,7 @@ def cashDash_despesas():
     today = datetime.datetime.today()
     transactions = [tr for tr in s.transactions  # query all transactions in the book/session and filter them on
                     if (tr.post_date.date() >= datetime.date(2016,  1, 1)) & 
-                       (tr.post_date.date() < datetime.date(today.year, today.month, today.day))] 
+                       (tr.post_date.date() <= datetime.date(today.year, today.month, today.day))] 
     rows_list=[]
     for tr in transactions:
         for spl in tr.splits:

@@ -14,7 +14,6 @@ function makeGraphs(error, allrecordsJson) {
 	allrecordsJson.forEach(function(d) {
 		d["Date"] = dateFormat.parse(d["Date"]);
 	});
-
 	
 	// we'll need to display month names rather than 0-based index values
 	var monthNames = [
@@ -26,7 +25,6 @@ function makeGraphs(error, allrecordsJson) {
 	var dayNames = [
 			"Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"
 	];
-		
 	
 	//Create a Crossfilter instance
 	var ndx = crossfilter(despesas);
@@ -45,7 +43,6 @@ function makeGraphs(error, allrecordsJson) {
 	//var povertyLevelDim = ndx.dimension(function(d) { return d["poverty_level"]; });
 	//var stateDim = ndx.dimension(function(d) { return d["school_state"]; });
 	//var totalDonationsDim = ndx.dimension(function(d) { return d["total_donations"]; });
-
 
 	//Calculate metrics
 	var numByMonth = monthDim.group(); 
@@ -75,7 +72,6 @@ function makeGraphs(error, allrecordsJson) {
 	//var totalDonations = ndx.groupAll().reduceSum(function(d) {return d["total_donations"];});
 	//var max_state = totalDonationsByState.top(1)[0].value;
 
-
 	//Define values (to be used in charts)
 	var minDate = dateDim.bottom(1)[0]["Date"];
 	var maxDate = dateDim.top(1)[0]["Date"];
@@ -101,7 +97,7 @@ function makeGraphs(error, allrecordsJson) {
 	// Ref: https://dc-js.github.io/dc.js/docs/html/dc.dataCount.html
 	totalDespesasND
 		.group(totalDespesas)
-		.formatNumber(d3.format("g"))
+		.formatNumber(d3.format("3s"))
 		.valueAccessor(function(d){return d; });
 		
 //.colors(d3.scale.ordinal().range(["#468966", "#FFF0A5", "#FFB03B", "#B64926", "#8E2800"]))
@@ -222,7 +218,6 @@ function makeGraphs(error, allrecordsJson) {
 		})
 
 */
-
     dc.renderAll();
 
 };

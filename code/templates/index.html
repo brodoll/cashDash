@@ -19,6 +19,7 @@
       <ul class="nav navbar-nav"> 
         <li class="active"><a href="#">Home</a></li> 
         <li><a href="./table">Table</a></li> 
+        <li><a href="./report">Report</a></li>
       </ul> 
     </div>
   </div>
@@ -30,24 +31,35 @@
 
     <div class="row">
 
-      <!-- Total de despesas/Valor -->
+      <!-- Total de despesas/Valor por ano -->
       <div class="col-sm-3">
         <div class="chart-wrapper">
           <div class="chart-title">
-             Total de despesas
+             Total de despesas por ano
           </div>
           <div class="chart-stage">
             <div id="chart-ring-years"></div>
           </div>
         </div>
+      <!-- Total de despesas/Valor por ano -->  
+      <!-- Total de despesas selecionadas -->  
+        <div class="chart-wrapper">
+          <div class="chart-title">
+             Total de despesas selecionadas
+          </div>
+          <div class="chart-stage">
+            <div id="total-despesas-nd"></div>
+          </div>
+        </div>
+        <!-- Total de despesas selecionadas -->  
       </div>
-      <!-- Total de despesas/Valor -->  
+      
 
       <!-- Gráfico(barras):total de despesas por subclasse -->
       <div class="col-sm-3">
         <div class="chart-wrapper">
           <div class="chart-title">
-             Meses
+             Total de despesas por meses
           </div>
           <div class="chart-stage">
             <div id="chart-row-months"></div>
