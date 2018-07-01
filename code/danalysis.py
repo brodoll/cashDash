@@ -13,8 +13,8 @@ else:
     s = open_book(os.path.join("gtm-controle.gnucash"), open_if_lock=True)
 
 transactions = [tr for tr in s.transactions  # query all transactions in the book/session and filter them on
-                if (tr.post_date.date() >= datetime.date(2017,  9, 1)) & 
-                   (tr.post_date.date() < datetime.date(2017, 9, 10))] 
+                if (tr.post_date.date() >= datetime.date(2017,  6, 1)) & 
+                   (tr.post_date.date() < datetime.date(2017, 11, 26))] 
 rows_list=[]
 for tr in transactions:
     for spl in tr.splits:
@@ -52,6 +52,11 @@ despesas['Sublevel2']=[el[2] for el in despesas.Parent.str.split(':')]
          # Despesas por subclassificação
 despesas[['Month','Value','Sublevel2']].groupby(['Month','Sublevel2']).sum().\
 unstack().Value.plot(kind='bar')
+# Média de gastos por subclassificação
+despesas[['Month','Value','Sublevel2']].groupby(['Sublevel2','Month']).sum().unstack().mean(axis=1)
+aux = despesas[['Month','Value','Sublevel2']].groupby(['Sublevel2','Month']).sum().unstack()
+aux.fillna(0,inplace=True)
+aux.mean(axis=1) # Médias considerando todos os meses
 
 
 # Complementar de df despesas
@@ -63,6 +68,14 @@ allrecords = pd.concat([outros,despesas],axis=0,ignore_index = True,join='outer'
 #json_despesas = pd.json.dumps(despesas.to_dict('records'))
 #http://pandas.pydata.org/pandas-docs/stable/io.html#json
 json_despesas = despesas.to_json(orient='records',date_format='iso')
+
+# Teste com lean analytics
+teste = despesas[['Date','Description','Value','Sublevel']].copy()
+teste.columns=['t','name','value','category']
+teste_json = teste.to_json(orient='records',date_format='iso')
+import json
+with open('despesas.txt', 'w') as outfile:
+    json.dump(teste_json, outfile)
 json_allrecords = allrecords.to_json(orient='records',date_format='iso')
 #json_df = df.to_json(orient='records',date_format='iso')
 s.close()

@@ -58,6 +58,7 @@ function makeGraphs(error, allrecordsJson) {
 	var sumByType = typeDim.group().reduceSum(function(d) {return d["Value"];});
 	var sumBySub = subDim.group().reduceSum(function(d) {return d["Value"];});
 	var sumBySub2 = sub2Dim.group().reduceSum(function(d) {return d["Value"];});
+	var sumByDate = dateDim.group().reduceSum(function(d) {return d["Value"];});
 	
 	//var numProjectsByDate = dateDim.group(); 
 	//var numProjectsByResourceType = resourceTypeDim.group();	
@@ -89,6 +90,7 @@ function makeGraphs(error, allrecordsJson) {
 	var totalDespesasByType3 = dc.rowChart("#total-despesas-sub3-bar")
 	var	yearRowChart = dc.rowChart("#chart-ring-years");
 	var monthRowChart = dc.rowChart("#chart-row-months");
+	var timeChart = dc.barChart("#bar-time")
 
 	// ColormapFirenze https://color.adobe.com
 	//chart.ordinalColors(["#468966", "#FFF0A5", "#FFB03B", "#B64926", "#8E2800"]);
@@ -97,7 +99,7 @@ function makeGraphs(error, allrecordsJson) {
 	// Ref: https://dc-js.github.io/dc.js/docs/html/dc.dataCount.html
 	totalDespesasND
 		.group(totalDespesas)
-		.formatNumber(d3.format("3s"))
+		.formatNumber(d3.format(".3s"))
 		.valueAccessor(function(d){return d; });
 		
 //.colors(d3.scale.ordinal().range(["#468966", "#FFF0A5", "#FFB03B", "#B64926", "#8E2800"]))
@@ -160,6 +162,18 @@ function makeGraphs(error, allrecordsJson) {
 		})
 		.elasticX(true)
 		.xAxis().ticks(2);
+
+	timeChart
+        .width(400)
+        .height(300)
+        .gap(5)
+        .elasticX(true)
+        .brushOn(true)
+        .x(d3.time.scale().domain([minDate, maxDate]))
+        .yAxisLabel("Despesas")
+        .xAxisLabel("Dia")
+        .dimension(dateDim)
+        .group(sumByDate);
 /*
 	numberProjectsND
 		.formatNumber(d3.format("d"))
