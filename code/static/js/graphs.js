@@ -127,7 +127,7 @@ function makeGraphs(error, allrecordsJson) {
 
 	totalDespesasByType3
 	    .width(300)
-        .height(500)
+        .height(665)
         .dimension(sub2Dim)
         .group(sumBySub2)
         .elasticX(true)
@@ -135,7 +135,7 @@ function makeGraphs(error, allrecordsJson) {
 
 	yearRowChart
 		.width(300)
-		.height(250)
+		.height(150)
 		.dimension(yearDim)
 		.group(sumByYear)
 		.colors(d3.scale.category10())
@@ -164,13 +164,13 @@ function makeGraphs(error, allrecordsJson) {
 		.xAxis().ticks(2);
 
 	timeChart
-        .width(400)
+        .width(750)
         .height(300)
         .gap(5)
         .elasticX(true)
         .brushOn(true)
         .x(d3.time.scale().domain([minDate, maxDate]))
-        .yAxisLabel("Despesas")
+        .yAxisLabel("Despesas",20)
         .xAxisLabel("Dia")
         .dimension(dateDim)
         .group(sumByDate);

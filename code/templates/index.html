@@ -8,12 +8,11 @@
   <link rel="stylesheet" href="./static/css/custom.css">
     <style>
       #total-despesas-nd {
-        background: orange;
+        background: white;
         width: 350px;
         font-size: 40px;
         text-align: center;
-        padding-top: 8px;
-        height: 74px;
+        height: 54px;
         line-height: normal;
       }
     </style>
@@ -30,18 +29,8 @@
 
     <div class="row">
 
-      <!-- Total de despesas/Valor por ano -->
       <div class="col-sm-3">
-        <div class="chart-wrapper">
-          <div class="chart-title">
-             Total de despesas por ano
-          </div>
-          <div class="chart-stage">
-            <div id="chart-ring-years"></div>
-          </div>
-        </div>
-      <!-- Total de despesas/Valor por ano -->  
-      <!-- Total de despesas selecionadas -->  
+        <!-- Total de despesas selecionadas -->  
         <div class="chart-wrapper">
           <div class="chart-title">
              Total de despesas selecionadas
@@ -51,11 +40,17 @@
           </div>
         </div>
         <!-- Total de despesas selecionadas -->  
-      </div>
-      
-
-      <!-- Gráfico(barras):total de despesas por subclasse -->
-      <div class="col-sm-3">
+        <!-- Total de despesas/Valor por ano -->
+        <div class="chart-wrapper">
+          <div class="chart-title">
+             Total de despesas por ano
+          </div>
+          <div class="chart-stage">
+            <div id="chart-ring-years"></div>
+          </div>
+        </div>
+      <!-- Total de despesas/Valor por ano -->  
+      <!-- Total de despesas/Valor por mês -->
         <div class="chart-wrapper">
           <div class="chart-title">
              Total de despesas por meses
@@ -64,34 +59,9 @@
             <div id="chart-row-months"></div>
           </div>
         </div>
+      <!-- Total de despesas/Valor por mês -->
       </div>
-      <!-- Gráfico(barras):total de despesas por subclasse -->
-
-      <!-- Gráfico(barras):total de despesas por subclasse -->
-      <div class="col-sm-3">
-        <div class="chart-wrapper">
-          <div class="chart-title">
-             Despesas fixas e variáveis
-          </div>
-          <div class="chart-stage">
-            <div id="total-despesas-sub2-bar"></div>
-          </div>
-        </div>
-
-      <!-- Despesas no tempo -->  
-        <div class="chart-wrapper">
-          <div class="chart-title">
-             Despesas no tempo
-          </div>
-          <div class="chart-stage">
-            <div id="bar-time"></div>
-          </div>
-        </div>
-        <!-- Despesas no tempo -->  
-
-      </div>
-      <!-- Gráfico(barras):total de despesas por subclasse -->
-
+      
       <!-- Gráfico(barras):total de despesas por alocação -->
       <div class="col-sm-3">
         <div class="chart-wrapper">
@@ -104,6 +74,36 @@
         </div>
       </div>
       <!-- Gráfico(barras):total de despesas por alocação -->
+
+      
+      <div class="col-sm-6">
+      <!-- Despesas no tempo -->  
+        <div class="chart-wrapper">
+          <div class="chart-title">
+             Despesas no tempo
+          </div>
+          <div class="chart-stage">
+            <div id="bar-time"></div>
+          </div>
+        </div>
+        <!-- Despesas no tempo -->  
+      </div>
+      
+
+      <div class="col-sm-3">
+      <!-- Gráfico(barras):total de despesas por subclasse -->
+      <!-- Despesas Fixas e Variáveis -->  
+        <div class="chart-wrapper">
+          <div class="chart-title">
+             Despesas Fixas e Variáveis
+          </div>
+          <div class="chart-stage">
+            <div id="total-despesas-sub2-bar"></div>
+          </div>
+        </div>
+        <!-- Despesas Fixas e Variáveis -->   
+        <!-- Gráfico(barras):total de despesas por subclasse -->
+      </div>
 
 
     </div>

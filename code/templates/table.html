@@ -19,7 +19,7 @@
       <div class="container">
 		  <h2>Lista de Despesas</h2>
 		  <p>Aqui encontram-se todas as despesas desde 2016:</p>         
-		  {{ expenses.to_html(classes="table table-hover") | safe}}
+		  {{ expenses.to_html(classes="table table-hover").replace('border="1"','border="0"') | safe}}
 	  </div>
     </div>
 
